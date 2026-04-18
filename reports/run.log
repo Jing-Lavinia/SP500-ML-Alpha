@@ -1,0 +1,179 @@
+2026-04-15 20:32:22 | INFO     | main | ================================================================
+2026-04-15 20:32:22 | INFO     | main |   Quantitative Factor Pipeline — S&P 500 Daily  
+2026-04-15 20:32:22 | INFO     | main |   Signal Weighting + Macro Hedge + 10d Horizon
+2026-04-15 20:32:22 | INFO     | main | ================================================================
+2026-04-15 20:32:22 | INFO     | main | STAGE 1: Loading core market data...
+2026-04-15 20:32:22 | INFO     | data_loader | Downloading HLOCV for 178 tickers via Alpaca...
+2026-04-15 20:32:22 | INFO     | data_loader |   Batch 1/4: ['AAPL', 'MSFT', 'NVDA', 'AVGO', 'ORCL']...
+2026-04-15 20:32:51 | INFO     | data_loader |   Batch 2/4: ['CB', 'PGR', 'TRV', 'MMC', 'AON']...
+2026-04-15 20:33:20 | INFO     | data_loader |   Batch 3/4: ['PG', 'KO', 'PEP', 'PM', 'MO']...
+2026-04-15 20:34:07 | INFO     | data_loader |   Batch 4/4: ['SO', 'AEP', 'EXC', 'D', 'PEG']...
+2026-04-15 20:34:34 | INFO     | data_loader | Final universe: 174 tickers × 2071 dates
+2026-04-15 20:34:39 | INFO     | main | STAGE 1B: Loading alternative data (Macro & Sentiment)...
+2026-04-15 20:34:39 | INFO     | data_loader | Downloading macro and sector flow data from Yahoo Finance...
+2026-04-15 20:34:43 | INFO     | data_loader | Macro alternative features saved: 4 columns.
+2026-04-15 20:34:43 | INFO     | data_loader | Downloading Alpaca News Sentiment for 178 tickers...
+2026-04-15 20:36:45 | INFO     | data_loader |   -> Success: Batch AAPL to TXN | Articles fetched: 5000
+2026-04-15 20:38:56 | INFO     | data_loader |   -> Success: Batch QCOM to SNPS | Articles fetched: 5000
+2026-04-15 20:41:07 | INFO     | data_loader |   -> Success: Batch CRM to TEAM | Articles fetched: 5000
+2026-04-15 20:45:42 | INFO     | data_loader |   -> Success: Batch SHOP to BAC | Articles fetched: 5000
+2026-04-15 20:48:21 | INFO     | data_loader |   -> Success: Batch WFC to CME | Articles fetched: 5000
+2026-04-15 20:50:57 | INFO     | data_loader |   -> Success: Batch CB to JNJ | Articles fetched: 5000
+2026-04-15 20:53:16 | INFO     | data_loader |   -> Success: Batch LLY to AMGN | Articles fetched: 5000
+2026-04-15 20:55:36 | INFO     | data_loader |   -> Success: Batch GILD to HD | Articles fetched: 5000
+2026-04-15 20:57:59 | INFO     | data_loader |   -> Success: Batch MCD to YUM | Articles fetched: 5000
+2026-04-15 20:59:49 | INFO     | data_loader |   -> Success: Batch DRI to COST | Articles fetched: 5000
+2026-04-15 21:01:43 | INFO     | data_loader |   -> Success: Batch PG to SJM | Articles fetched: 5000
+2026-04-15 21:03:51 | INFO     | data_loader |   -> Success: Batch CAG to HON | Articles fetched: 5000
+2026-04-15 21:05:43 | INFO     | data_loader |   -> Success: Batch CAT to CSX | Articles fetched: 5000
+2026-04-15 21:07:41 | INFO     | data_loader |   -> Success: Batch NSC to CVX | Articles fetched: 5000
+2026-04-15 21:09:25 | INFO     | data_loader |   -> Success: Batch COP to DUK | Articles fetched: 5000
+2026-04-15 21:11:09 | INFO     | data_loader |   -> Success: Batch SO to APD | Articles fetched: 5000
+2026-04-15 21:12:57 | INFO     | data_loader |   -> Success: Batch SHW to VZ | Articles fetched: 5000
+2026-04-15 21:15:01 | INFO     | data_loader |   -> Success: Batch T to IPG | Articles fetched: 5000
+2026-04-15 21:15:04 | INFO     | data_loader | Alpaca news data saved successfully.
+2026-04-15 21:15:04 | INFO     | main | STAGE 2: Computing HLOC-enhanced factor pool...
+2026-04-15 21:15:04 | INFO     | features | Building HLOC-enhanced factor pool...
+2026-04-15 21:15:04 | INFO     | features |   Factor: OvernightGapRev
+2026-04-15 21:15:04 | INFO     | features |   Factor: IntradayMom
+2026-04-15 21:15:04 | INFO     | features |   Factor: ParkinsonVol_21
+2026-04-15 21:15:04 | INFO     | features |   Factor: ParkinsonVol_63
+2026-04-15 21:15:05 | INFO     | features |   Factor: CLV_21
+2026-04-15 21:15:05 | INFO     | features | Factor pool built: 11 HLOC-powered factors
+2026-04-15 21:15:05 | INFO     | main | STAGE 3: Building ML feature matrix...
+2026-04-15 21:15:05 | INFO     | alpha_models | Building ML feature matrix (Top 10% Targeting, 10d Horizon)...
+2026-04-15 21:15:13 | INFO     | main | STAGE 4: Dynamic ICIR composite synthesis...
+2026-04-15 21:15:13 | INFO     | features | === Dynamic ICIR synthesis engine (multi-window + sign protection) ===
+2026-04-15 21:16:00 | INFO     | main | Slicing to backtest window: 2020-09-01 → 2026-03-31
+2026-04-15 21:16:00 | INFO     | main | STAGE 5: Alphalens factor evaluation...
+2026-04-15 21:16:00 | INFO     | simulator | Preparing Alphalens data...
+2026-04-15 21:16:03 | INFO     | simulator | Alphalens data ready: 239,109 rows
+2026-04-15 21:18:53 | INFO     | visualization | Alphalens reports → /Users/apple/Documents/SP500/reports/plots
+2026-04-15 21:18:53 | INFO     | main | STAGE 6: Linear ICIR backtest...
+2026-04-15 21:18:53 | INFO     | simulator | === Backtest engine: Variable Beta (130/30) with Vol-Targeting & Regime Switching ===
+2026-04-15 21:18:53 | INFO     | simulator |   Holding period: 10d | Cost: 5.0bps
+2026-04-15 21:18:53 | INFO     | simulator | Constructing Dynamic Target Weights...
+2026-04-15 21:18:59 | INFO     | simulator | Applying 10-day rolling smooth rebalancing and TURNOVER BANDS...
+2026-04-15 21:19:05 | INFO     | simulator |   Leverage — Gross: 1.616x | Long: 1.204x | Short: 0.412x
+2026-04-15 21:19:05 | INFO     | simulator | Computing returns and transaction costs...
+2026-04-15 21:19:05 | INFO     | simulator | ====================================================
+2026-04-15 21:19:05 | INFO     | simulator | PERFORMANCE SUMMARY
+2026-04-15 21:19:05 | INFO     | simulator | ====================================================
+2026-04-15 21:19:05 | INFO     | simulator |   Total Return                 66.6917%
+2026-04-15 21:19:05 | INFO     | simulator |   Geometric CAGR               9.6338%
+2026-04-15 21:19:05 | INFO     | simulator |   Annualised Volatility        11.1836%
+2026-04-15 21:19:05 | INFO     | simulator |   Sharpe Ratio                 0.8614
+2026-04-15 21:19:05 | INFO     | simulator |   Sortino Ratio                1.2096
+2026-04-15 21:19:05 | INFO     | simulator |   Calmar Ratio                 0.4647
+2026-04-15 21:19:05 | INFO     | simulator |   Omega Ratio                  1.1610
+2026-04-15 21:19:05 | INFO     | simulator |   Tail Ratio                   1.0195
+2026-04-15 21:19:05 | INFO     | simulator |   Profit Factor                1.1610
+2026-04-15 21:19:05 | INFO     | simulator |   Max Drawdown                 -20.7334%
+2026-04-15 21:19:05 | INFO     | simulator |   Avg Drawdown                 -7.6595%
+2026-04-15 21:19:05 | INFO     | simulator |   Max DD Duration (days)       630
+2026-04-15 21:19:05 | INFO     | simulator |   Avg DD Duration (days)       22.7
+2026-04-15 21:19:05 | INFO     | simulator |   VaR 95% (Daily)              -1.1488%
+2026-04-15 21:19:05 | INFO     | simulator |   CVaR 95% (Daily)             -1.6025%
+2026-04-15 21:19:05 | INFO     | simulator |   Skewness                     -0.3151
+2026-04-15 21:19:05 | INFO     | simulator |   Excess Kurtosis              2.0291
+2026-04-15 21:19:05 | INFO     | simulator |   Win Rate (Daily)             53.9568%
+2026-04-15 21:19:05 | INFO     | simulator |   Best Day                     2.8680%
+2026-04-15 21:19:05 | INFO     | simulator |   Worst Day                    -3.7983%
+2026-04-15 21:19:05 | INFO     | simulator |   Best Month                   7.7746%
+2026-04-15 21:19:05 | INFO     | simulator |   Worst Month                  -8.1499%
+2026-04-15 21:19:05 | INFO     | simulator |   Avg Daily Turnover           3.3118%
+2026-04-15 21:19:05 | INFO     | simulator |   Annual Turnover              8.35x
+2026-04-15 21:19:05 | INFO     | simulator |   Avg Gross Exposure           1.616x
+2026-04-15 21:19:05 | INFO     | simulator |   Avg Long Exposure            1.204x
+2026-04-15 21:19:05 | INFO     | simulator |   Avg Short Exposure           0.412x
+2026-04-15 21:19:05 | INFO     | simulator | ====================================================
+2026-04-15 21:19:05 | INFO     | main | STAGE 7: Walk-forward ML scoring (LightGBM + Ridge)...
+2026-04-15 21:19:05 | INFO     | alpha_models | === Walk-forward ML scoring engine (PROBABILITY RANKING) ===
+2026-04-15 21:19:16 | INFO     | alpha_models |   Fold 01 | test: 2019-07-19 → 2019-10-16 | IC(Prob): +0.182
+2026-04-15 21:20:02 | INFO     | alpha_models |   Fold 02 | test: 2019-10-17 → 2020-01-16 | IC(Prob): +0.238
+2026-04-15 21:20:34 | INFO     | alpha_models |   Fold 03 | test: 2020-01-17 → 2020-04-17 | IC(Prob): +0.195
+2026-04-15 21:21:08 | INFO     | alpha_models |   Fold 04 | test: 2020-04-20 → 2020-07-17 | IC(Prob): +0.215
+2026-04-15 21:21:28 | INFO     | alpha_models |   Fold 05 | test: 2020-07-20 → 2020-10-15 | IC(Prob): +0.214
+2026-04-15 21:21:34 | INFO     | alpha_models |   Fold 06 | test: 2020-10-16 → 2021-01-15 | IC(Prob): +0.276
+2026-04-15 21:21:39 | INFO     | alpha_models |   Fold 07 | test: 2021-01-19 → 2021-04-19 | IC(Prob): +0.241
+2026-04-15 21:21:43 | INFO     | alpha_models |   Fold 08 | test: 2021-04-20 → 2021-07-19 | IC(Prob): +0.235
+2026-04-15 21:21:47 | INFO     | alpha_models |   Fold 09 | test: 2021-07-20 → 2021-10-15 | IC(Prob): +0.285
+2026-04-15 21:21:52 | INFO     | alpha_models |   Fold 10 | test: 2021-10-18 → 2022-01-14 | IC(Prob): +0.187
+2026-04-15 21:21:56 | INFO     | alpha_models |   Fold 11 | test: 2022-01-18 → 2022-04-18 | IC(Prob): +0.142
+2026-04-15 21:22:01 | INFO     | alpha_models |   Fold 12 | test: 2022-04-19 → 2022-07-19 | IC(Prob): +0.206
+2026-04-15 21:22:04 | INFO     | alpha_models |   Fold 13 | test: 2022-07-20 → 2022-10-17 | IC(Prob): +0.218
+2026-04-15 21:22:07 | INFO     | alpha_models |   Fold 14 | test: 2022-10-18 → 2023-01-18 | IC(Prob): +0.220
+2026-04-15 21:22:10 | INFO     | alpha_models |   Fold 15 | test: 2023-01-19 → 2023-04-19 | IC(Prob): +0.200
+2026-04-15 21:22:12 | INFO     | alpha_models |   Fold 16 | test: 2023-04-20 → 2023-07-20 | IC(Prob): +0.284
+2026-04-15 21:22:15 | INFO     | alpha_models |   Fold 17 | test: 2023-07-21 → 2023-10-18 | IC(Prob): +0.187
+2026-04-15 21:22:17 | INFO     | alpha_models |   Fold 18 | test: 2023-10-19 → 2024-01-19 | IC(Prob): +0.252
+2026-04-15 21:22:20 | INFO     | alpha_models |   Fold 19 | test: 2024-01-22 → 2024-04-19 | IC(Prob): +0.157
+2026-04-15 21:22:22 | INFO     | alpha_models |   Fold 20 | test: 2024-04-22 → 2024-07-22 | IC(Prob): +0.198
+2026-04-15 21:22:24 | INFO     | alpha_models |   Fold 21 | test: 2024-07-23 → 2024-10-18 | IC(Prob): +0.188
+2026-04-15 21:22:27 | INFO     | alpha_models |   Fold 22 | test: 2024-10-21 → 2025-01-22 | IC(Prob): +0.213
+2026-04-15 21:22:29 | INFO     | alpha_models |   Fold 23 | test: 2025-01-23 → 2025-04-23 | IC(Prob): +0.160
+2026-04-15 21:22:32 | INFO     | alpha_models |   Fold 24 | test: 2025-04-24 → 2025-07-24 | IC(Prob): +0.267
+2026-04-15 21:22:34 | INFO     | alpha_models |   Fold 25 | test: 2025-07-25 → 2025-10-22 | IC(Prob): +0.257
+2026-04-15 21:22:37 | INFO     | alpha_models |   Fold 26 | test: 2025-10-23 → 2026-01-23 | IC(Prob): +0.222
+2026-04-15 21:22:39 | INFO     | alpha_models |   Fold 27 | test: 2026-01-26 → 2026-03-30 | IC(Prob): +0.199
+2026-04-15 21:22:40 | INFO     | alpha_models | Walk-forward complete | Mean OOS IC (ensemble): +0.2162
+2026-04-15 21:22:40 | INFO     | main | ML score coverage in backtest window: 100.0%
+2026-04-15 21:22:40 | INFO     | main | STAGE 8: ML backtest...
+2026-04-15 21:22:40 | INFO     | simulator | === Backtest engine: Variable Beta (130/30) with Vol-Targeting & Regime Switching ===
+2026-04-15 21:22:40 | INFO     | simulator |   Holding period: 10d | Cost: 5.0bps
+2026-04-15 21:22:40 | INFO     | simulator | Constructing Dynamic Target Weights...
+2026-04-15 21:22:42 | INFO     | simulator | Applying 10-day rolling smooth rebalancing and TURNOVER BANDS...
+2026-04-15 21:22:44 | INFO     | simulator |   Leverage — Gross: 1.654x | Long: 1.217x | Short: 0.437x
+2026-04-15 21:22:44 | INFO     | simulator | Computing returns and transaction costs...
+2026-04-15 21:22:44 | INFO     | simulator | ====================================================
+2026-04-15 21:22:44 | INFO     | simulator | PERFORMANCE SUMMARY
+2026-04-15 21:22:44 | INFO     | simulator | ====================================================
+2026-04-15 21:22:44 | INFO     | simulator |   Total Return                 287.3340%
+2026-04-15 21:22:44 | INFO     | simulator |   Geometric CAGR               27.6014%
+2026-04-15 21:22:44 | INFO     | simulator |   Annualised Volatility        16.2695%
+2026-04-15 21:22:44 | INFO     | simulator |   Sharpe Ratio                 1.6965
+2026-04-15 21:22:44 | INFO     | simulator |   Sortino Ratio                2.5239
+2026-04-15 21:22:44 | INFO     | simulator |   Calmar Ratio                 1.7708
+2026-04-15 21:22:44 | INFO     | simulator |   Omega Ratio                  1.3025
+2026-04-15 21:22:44 | INFO     | simulator |   Tail Ratio                   1.0682
+2026-04-15 21:22:44 | INFO     | simulator |   Profit Factor                1.3025
+2026-04-15 21:22:44 | INFO     | simulator |   Max Drawdown                 -15.5868%
+2026-04-15 21:22:44 | INFO     | simulator |   Avg Drawdown                 -5.4514%
+2026-04-15 21:22:44 | INFO     | simulator |   Max DD Duration (days)       405
+2026-04-15 21:22:44 | INFO     | simulator |   Avg DD Duration (days)       12.1
+2026-04-15 21:22:44 | INFO     | simulator |   VaR 95% (Daily)              -1.6263%
+2026-04-15 21:22:44 | INFO     | simulator |   CVaR 95% (Daily)             -2.2492%
+2026-04-15 21:22:44 | INFO     | simulator |   Skewness                     -0.1322
+2026-04-15 21:22:44 | INFO     | simulator |   Excess Kurtosis              1.2548
+2026-04-15 21:22:44 | INFO     | simulator |   Win Rate (Daily)             56.8345%
+2026-04-15 21:22:44 | INFO     | simulator |   Best Day                     3.9212%
+2026-04-15 21:22:44 | INFO     | simulator |   Worst Day                    -4.5679%
+2026-04-15 21:22:44 | INFO     | simulator |   Best Month                   11.9594%
+2026-04-15 21:22:44 | INFO     | simulator |   Worst Month                  -8.8329%
+2026-04-15 21:22:44 | INFO     | simulator |   Avg Daily Turnover           6.9525%
+2026-04-15 21:22:44 | INFO     | simulator |   Annual Turnover              17.52x
+2026-04-15 21:22:44 | INFO     | simulator |   Avg Gross Exposure           1.654x
+2026-04-15 21:22:44 | INFO     | simulator |   Avg Long Exposure            1.217x
+2026-04-15 21:22:44 | INFO     | simulator |   Avg Short Exposure           0.437x
+2026-04-15 21:22:44 | INFO     | simulator | ====================================================
+2026-04-15 21:22:44 | INFO     | main | STAGE 9: Generating visualisation reports...
+2026-04-15 21:22:46 | INFO     | visualization | Performance dashboard → /Users/apple/Documents/SP500/reports/performance_dashboard.png
+2026-04-15 21:22:46 | INFO     | visualization | Factor IC summary → /Users/apple/Documents/SP500/reports/factor_ic_summary.png
+2026-04-15 21:22:47 | INFO     | visualization | ICIR weight history → /Users/apple/Documents/SP500/reports/icir_weight_history.png
+2026-04-15 21:22:48 | INFO     | visualization | Monthly returns heatmap → /Users/apple/Documents/SP500/reports/monthly_returns_heatmap.png
+2026-04-15 21:22:49 | INFO     | visualization | Cost & turnover analysis → /Users/apple/Documents/SP500/reports/cost_turnover_analysis.png
+2026-04-15 21:22:49 | INFO     | visualization | Drawdown analysis → /Users/apple/Documents/SP500/reports/drawdown_analysis.png
+2026-04-15 21:22:50 | INFO     | visualization | Regime conditional returns → /Users/apple/Documents/SP500/reports/regime_conditional_returns.png
+2026-04-15 21:22:51 | INFO     | visualization | Long/short attribution → /Users/apple/Documents/SP500/reports/long_short_attribution.png
+2026-04-15 21:22:52 | INFO     | visualization | ML diagnostics → /Users/apple/Documents/SP500/reports/ml_diagnostics.png
+2026-04-15 21:22:53 | INFO     | visualization | Performance dashboard → /Users/apple/Documents/SP500/reports/performance_dashboard.png
+2026-04-15 21:22:56 | INFO     | visualization | Strategy comparison → /Users/apple/Documents/SP500/reports/strategy_comparison.png
+2026-04-15 21:22:58 | INFO     | visualization | Monthly returns heatmap → /Users/apple/Documents/SP500/reports/monthly_returns_heatmap.png
+2026-04-15 21:22:59 | INFO     | visualization | Cost & turnover analysis → /Users/apple/Documents/SP500/reports/cost_turnover_analysis.png
+2026-04-15 21:23:00 | INFO     | visualization | Drawdown analysis → /Users/apple/Documents/SP500/reports/drawdown_analysis.png
+2026-04-15 21:23:00 | INFO     | visualization | Regime conditional returns → /Users/apple/Documents/SP500/reports/regime_conditional_returns.png
+2026-04-15 21:23:01 | INFO     | visualization | Long/short attribution → /Users/apple/Documents/SP500/reports/long_short_attribution.png
+2026-04-15 21:23:01 | INFO     | main | STAGE 10: Exporting data artifacts...
+2026-04-15 21:23:01 | INFO     | main | ================================================================
+2026-04-15 21:23:01 | INFO     | main |   Pipeline complete → /Users/apple/Documents/SP500/reports
+2026-04-15 21:23:01 | INFO     | main | ================================================================
