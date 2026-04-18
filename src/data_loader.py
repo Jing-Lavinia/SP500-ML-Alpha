@@ -27,8 +27,8 @@ PROXY = "http://127.0.0.1:7890"
 os.environ['http_proxy'] = PROXY
 os.environ['https_proxy'] = PROXY
 
-ALPACA_API_KEY = 'PKHHXR4WCUXWCPXEFUD72BG5V2'
-ALPACA_SECRET_KEY = '8CyLefa7PCZCc3cBqbdfsunGpcuQV3w4jwZNfzX8SSnQ'
+ALPACA_API_KEY = 'YOUR_ALPACA_API_KEY'
+ALPACA_SECRET_KEY = 'YOUR_ALPACA_SECRET_KEY'
 
 alpaca_client = StockHistoricalDataClient(ALPACA_API_KEY, ALPACA_SECRET_KEY)
 
