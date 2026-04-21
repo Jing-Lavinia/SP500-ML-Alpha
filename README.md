@@ -61,27 +61,6 @@ main.py
 
 ---
 
-## Factor Library
-
-All 11 factors pass through `_cs_clean()`: cross-sectional MAD winsorisation (5× threshold) → z-score → optional EWMA smoothing.
-
-### Classic Price/Volume Factors
-| Factor | Description |
-|---|---|
-| `Momentum_252` | 12-month price momentum, skipping the last month (avoids short-term reversal) |
-| `Momentum_63` | 3-month momentum |
-| `MeanRevert_5` | 5-day short-term reversal |
-| `LowVol_63` | Low 63-day realised volatility (long low-vol, short high-vol) |
-| `AmihudIlliq` | Amihud illiquidity ratio — prefer liquid stocks |
-| `TurnoverRate` | Log volume turnover rate |
-
-### HLOC Factors — exploiting Open, High, Low
-| Factor | Formula | Intuition |
-|---|---|---|
-| `OvernightGapRev` | `-(Open / Close_prev - 1)` | Fade extreme overnight news reactions |
-| `IntradayMom` | `Close / Open - 1` | True institutional buying pressure within the session |
-| `ParkinsonVol_21/63` | `sqrt(ln(H/L)^2 / 4ln2)` | More efficient volatility estimate than close-to-close std |
-| `CLV_21` | `((C-L) - (H-C)) / (H-L)` | Close location value: closing near the high signals buying pressure |
 
 ### Feature Importance (LightGBM, Last Fold)
 
