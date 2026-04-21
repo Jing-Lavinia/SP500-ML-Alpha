@@ -27,7 +27,7 @@
 
 ![Performance Dashboard](reports/performance_dashboard.png)
 
-The top panel shows the ML Ensemble cumulative return reaching **~400%** against SPY's ~200% over the backtest window, with a consistently positive rolling 252-day Sharpe that only dipped negative briefly during the 2022 rate-shock bear market. The Factor IC heatmap (bottom) reveals `IntradayMom` and `Momentum_252` as the most persistently positive IC contributors across the entire 7-year panel.
+The top panel shows the ML Ensemble cumulative return reaching **~400%** against SPY's ~200% over the backtest window, with a consistently positive rolling 252-day Sharpe that only dipped negative briefly during the 2022 rate-shock bear market. 
 
 ---
 
